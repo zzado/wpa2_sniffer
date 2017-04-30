@@ -1,2 +1,3 @@
 # wpa2_sniffer
-ㅋ_ㅋ
+
+-lpcap -lcrypto -ltins -lpthread
