@@ -1,3 +1,3 @@
 # wpa2_sniffer
 
--lpcap -lcrypto -ltins -lpthread
+g++ -std=c++11 -o wpa2_sniffer wpa_sniffer.cpp -lpcap -lcrypto -ltins -lpthread
