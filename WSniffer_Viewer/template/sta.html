@@ -1,0 +1,81 @@
+{% include "head.html" %}
+
+<body>
+
+    <div id="wrapper">
+
+	{% include "nav.html"%}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            WSniffer <small> AP/STA information</small>
+                        </h1>
+                    </div>
+                </div>
+
+
+		<div class="row">
+                    <h3 class="page-header">AP Information</h3>
+		    <div class="col-lg-12">	
+			<div>SSID: {{Ap.ApSsid}}</div>
+			<br> 
+			<div>MAC: {{Ap.ApMac}}</div>
+			<br>
+			<div>Encrypted: WPA2/AES-CCMP</div>
+			<br>
+		 	<div><a href="/check_sess/{{ApNo}}" class="btn btn-danger" role="button">Check Session hijacking</a></div>
+                
+                    </div>
+                </div>
+
+                <div class="row">
+		<h3 class="page-header">Station Information</h3>
+ 
+	{% for sta in obj_list %}
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <h4>{{sta.NatIp}}</h4>
+                                        <div>{{sta.StaMac}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{% url 'message' sta.id %}">
+                                <div class="panel-footer">
+                                    <span class="pull-left">{{sta.Date}}</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+	{% endfor %}
+
+                </div>
+
+	{% include "footer.html" %}
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    {% include "tail.html" %}
+
+</body>
+
+</html>

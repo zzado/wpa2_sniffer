@@ -1,0 +1,79 @@
+{% include "head.html" %}
+
+<body>
+
+    <div id="wrapper">
+
+	{% include "nav.html"%}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            WSniffer <small> Sniffing Packet</small>
+                        </h1>
+			<h3> </h3>
+                    </div>
+                </div>
+
+
+		<div class="row">
+		    <div class="col-lg-12">	
+			<h3 class="page-header"> {{Ap.ApSsid}} -> {{Ap.NatIp}} ({{Ap.StaMac}}) </h3>
+                    </div>
+                </div>
+		<a href="/message/{{StaNo}}" class="btn btn-success" role="button">Sniffing Mode </a>		
+		<br><br>
+                <div class="row">
+		    <div class="col-lg-12"> 
+		{% for message in Message_list %}
+			<div>[{{message.Date|date:"m/d - h:i"}}]
+				<a href = "http://{{message.Host}}{{message.Path}}" target="_blank">
+				{{ message.Host }}{{ message.Path }}</a>&nbsp
+				<span class="glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#CookieModal{{message.index}}"></span>	
+			</div>
+			<div id="CookieModal{{message.index}}" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+		    <!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">{{message.Host}}</h4>
+      						</div>
+      						<div class="modal-body">
+     					{{message.Json}}
+      						</div>
+     		 				<div class="modal-footer">
+        						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      						</div>
+    					</div>
+
+  				</div>
+			</div>
+
+		{% endfor %}
+		    </div>
+                </div>
+
+
+
+
+	{% include "footer.html" %}
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    {% include "tail.html" %}
+
+</body>
+
+</html>

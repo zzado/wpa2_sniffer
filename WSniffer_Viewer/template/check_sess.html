@@ -1,0 +1,80 @@
+{% include "head.html" %}
+
+<body>
+
+    <div id="wrapper">
+
+	{% include "nav.html"%}
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+		<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            WSniffer <small> Check Session hijacking</small>
+                        </h1>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <h3 class="page-header">AP Information</h3>
+                    <div class="col-lg-12">
+                        <div>SSID: {{Ap.ApSsid}}</div>
+                        <br>
+                        <div>MAC: {{Ap.ApMac}}</div>
+                        <br>
+                        <div>Encrypted: WPA2/AES-CCMP</div>
+                    </div>
+                </div>
+		
+		<div class="row">
+                <div class="col-lg-12">
+		{% if res_list %}    
+			<h3 style="color:red">Session Hijacking Detected!!</h3>
+			<button class="btn btn-danger" data-toggle="modal" data-target="#Info">자세히..</button>
+
+                        <div id="Info" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                        <div class="modal-content">
+                                                <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">의심되는 호스트</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                {% for ip in res_list%}
+						{{ip}}<br>
+						{% endfor %}
+						</div>
+                                                <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+		{% else %}
+			<h3 style="color:green">No Session Hijacking Detected..</h3>
+		{% endif %}
+
+		</div>
+                </div>
+
+
+	{% include "footer.html" %}
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    {% include "tail.html" %}
+
+</body>
+
+</html>
