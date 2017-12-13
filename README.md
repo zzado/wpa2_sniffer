@@ -1,6 +1,6 @@
 # wpa2_sniffer
 ### Useage
-	* [Demo] g++ -std=c++11 -o WSniffer_demo wpa_sniffer.cpp -lpcap -lcrypto -ltins -lpthread
+	* [Demo] g++ -std=c++11 -o WSniffer_demo wpa2_sniffer.cpp -lpcap -lcrypto -ltins -lpthread
 	* ./WSniffer_demo
 ### Dependency
 	* apt-get install libpcap-dev
